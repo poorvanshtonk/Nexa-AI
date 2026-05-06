@@ -15,14 +15,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isTyping }) => {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
-  
-const bottomRef = useRef<HTMLDivElement | null>(null);
 
-useEffect(() => {
-  bottomRef.current?.scrollIntoView({
-    behavior: "smooth",
-  });
-}, [messages, isTyping]);
   return (
     <div className="chat-window">
       <div className="chat-messages">
@@ -39,7 +32,6 @@ useEffect(() => {
         ))}
         {isTyping && <TypingIndicator />}
         <div ref={scrollRef} />
-        <div ref={bottomRef} />
       </div>
     </div>
   );

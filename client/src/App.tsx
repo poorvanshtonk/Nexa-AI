@@ -4,14 +4,10 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
+import ProfileModal from './components/ProfileModal';
+import SettingsModal from './components/SettingsModal';
 import type { Message } from './types/message';
 import './ModernUI.css';
-
-// type Message = {
-//   id: string;
-//   sender: 'user' | 'nexa';
-//   text: string;
-// };
 
 const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';
 
@@ -20,13 +16,20 @@ const App: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const appendMessage = (
       sender: Message["sender"],
       text: string
     ) => {
       const newMessage: Message = {
-        id: Date.now(),
+        id: Date.now().toString(),
         sender,
         text,
         timestamp: new Date().toLocaleTimeString([], {
@@ -62,9 +65,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="nexa-root">
+    <div className={`nexa-root ${theme}-theme`}>
       <Sidebar
         isOpen={isSidebarOpen}
+        onOpenProfile={() => setIsProfileOpen(true)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
         onClose={() => setIsSidebarOpen(false)}
         onNewChat={() => {
           setMessages([]);
@@ -73,12 +78,17 @@ const App: React.FC = () => {
         }}
       />
 
-      {isSidebarOpen && (
-        <button
-          className="sidebar-scrim"
-          type="button"
-          aria-label="Close sidebar"
-          onClick={() => setIsSidebarOpen(false)}
+      {isProfileOpen && (
+        <ProfileModal
+          onClose={() => setIsProfileOpen(false)}
+        />
+      )}
+
+      {isSettingsOpen && (
+        <SettingsModal
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          onClose={() => setIsSettingsOpen(false)}
         />
       )}
 

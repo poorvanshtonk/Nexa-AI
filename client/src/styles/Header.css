@@ -5,7 +5,7 @@
   justify-content: space-between;
   gap: 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(15, 17, 21, 0.92);
+  background: var(--bg-glass);
   padding: 0 28px;
   backdrop-filter: blur(12px);
 }

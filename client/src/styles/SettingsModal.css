@@ -1,0 +1,82 @@
+.settings-modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: var(--shadow);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.settings-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.settings-modal::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+.settings-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.setting-item button {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.setting-select {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.upgrade-card {
+  margin-top: 2rem;
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+}
+
+.upgrade-card h3 { margin: 0 0 0.5rem 0; color: var(--text); }
+
+.upgrade-card button {
+  width: 100%;
+  margin-top: 1rem;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: none;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+}

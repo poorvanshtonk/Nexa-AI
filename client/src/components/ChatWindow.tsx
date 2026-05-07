@@ -21,9 +21,12 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isTyping }) => {
       <div className="chat-messages">
         {messages.length === 0 && (
           <div className="empty-state">
-            <span className="empty-kicker">Nexa AI</span>
-            <h2>Start a focused research conversation.</h2>
-            <p>Ask for summaries, implementation ideas, project documentation, or evaluation support.</p>
+            <div className="hero-section">
+              <h1 className="hero-gradient">How can I help you today?</h1>
+              <p className="hero-subtitle">
+                Nexa AI is your futuristic partner for research, coding, and creative drafting.
+              </p>
+            </div>
           </div>
         )}
 

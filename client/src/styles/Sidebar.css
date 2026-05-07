@@ -5,7 +5,7 @@
   width: var(--sidebar-width);
   height: 100vh;
   border-right: 1px solid var(--border);
-  background: rgba(24, 24, 27, 0.8);
+  background: var(--bg-glass);
   backdrop-filter: blur(20px);
   padding: 14px;
 }
@@ -34,7 +34,7 @@
   justify-content: center;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
-  background: #f5f7fa;
+  background: var(--accent);
   color: var(--accent-text);
   font-size: 13px;
   font-weight: 780;

@@ -10,7 +10,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
-  scrollbar-color: #3a414f transparent;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
   scrollbar-width: thin;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
 .chat-messages::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 999px;
-  background: #3a414f;
+  background: var(--scrollbar-thumb);
   background-clip: content-box;
 }
 
@@ -47,7 +47,7 @@
 .hero-gradient {
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 800;
-  background: linear-gradient(to right, #fff, #a1a1aa);
+  background: linear-gradient(to right, var(--text), var(--text-muted));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;

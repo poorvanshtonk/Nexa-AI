@@ -18,6 +18,11 @@ const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const appendMessage = (
       sender: Message["sender"],
@@ -60,7 +65,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="nexa-root">
+    <div className={`nexa-root ${theme}-theme`}>
       <Sidebar
         isOpen={isSidebarOpen}
         onOpenProfile={() => setIsProfileOpen(true)}
@@ -81,6 +86,8 @@ const App: React.FC = () => {
 
       {isSettingsOpen && (
         <SettingsModal
+          theme={theme}
+          onToggleTheme={toggleTheme}
           onClose={() => setIsSettingsOpen(false)}
         />
       )}

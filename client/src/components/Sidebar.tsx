@@ -10,9 +10,17 @@ interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   onNewChat: () => void;
+  onOpenProfile: () => void;
+  onOpenSettings: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNewChat }) => (
+const Sidebar: React.FC<SidebarProps> = ({ 
+  isOpen, 
+  onClose, 
+  onNewChat, 
+  onOpenProfile, 
+  onOpenSettings 
+}) => (
   <aside className={isOpen ? 'sidebar is-open' : 'sidebar'} aria-label="Nexa navigation">
     <div className="sidebar-header">
       <div className="brand-lockup" aria-label="Nexa AI">
@@ -46,11 +54,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNewChat }) => (
     </nav>
 
     <nav className="sidebar-footer">
-      <button className="sidebar-btn" type="button">
+      <button className="sidebar-btn" onClick={onOpenSettings}>
         <SettingsOutlinedIcon fontSize="small" />
         <span>Settings</span>
       </button>
-      <button className="sidebar-btn" type="button">
+      <button className="sidebar-btn" onClick={onOpenProfile}>
         <PersonOutlineRoundedIcon fontSize="small" />
         <span>Profile</span>
       </button>

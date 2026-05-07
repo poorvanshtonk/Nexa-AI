@@ -1,22 +1,22 @@
 :root {
-  --bg: #0f1115;
-  --bg-elevated: #14171d;
-  --bg-panel: #181b22;
-  --bg-soft: #20242d;
-  --border: #2a2f3a;
-  --border-strong: #3a414f;
-  --text: #f4f6f8;
-  --text-muted: #a4acb9;
-  --text-subtle: #737d8d;
-  --accent: #f5f7fa;
-  --accent-text: #0f1115;
+  --bg: #09090b;
+  --bg-elevated: #18181b;
+  --bg-panel: #27272a;
+  --bg-soft: #3f3f46;
+  --border: #27272a;
+  --border-strong: #3f3f46;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
+  --accent: #ffffff;
+  --accent-text: #09090b;
   --danger: #f87171;
-  --shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
+  --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --radius-sm: 8px;
   --radius-md: 12px;
-  --sidebar-width: 264px;
-  --header-height: 68px;
-  --content-width: 860px;
+  --sidebar-width: 260px;
+  --header-height: 56px;
+  --content-width: 768px;
 }
 
 .nexa-root {

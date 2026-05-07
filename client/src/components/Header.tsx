@@ -5,13 +5,19 @@ import '../styles/Header.css';
 interface HeaderProps {
   messageCount: number;
   isTyping: boolean;
+  isSidebarOpen: boolean;
   onMenuClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ messageCount, isTyping, onMenuClick }) => (
+const Header: React.FC<HeaderProps> = ({ messageCount, isTyping, isSidebarOpen, onMenuClick }) => (
   <header className="header">
     <div className="header-left">
-      <button className="icon-button menu-button" type="button" aria-label="Open sidebar" onClick={onMenuClick}>
+      <button 
+        className={`icon-button menu-button ${isSidebarOpen ? 'hidden-desktop' : ''}`} 
+        type="button" 
+        aria-label="Open sidebar" 
+        onClick={onMenuClick}
+      >
         <MenuRoundedIcon fontSize="small" />
       </button>
       <div>

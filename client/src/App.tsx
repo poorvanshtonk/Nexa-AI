@@ -29,7 +29,7 @@ const App: React.FC = () => {
       text: string
     ) => {
       const newMessage: Message = {
-        id: Date.now().toString(),
+        id: Date.now(),
         sender,
         text,
         timestamp: new Date().toLocaleTimeString([], {

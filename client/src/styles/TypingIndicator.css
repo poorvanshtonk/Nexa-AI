@@ -3,9 +3,9 @@
   align-items: center;
   gap: 5px;
   width: fit-content;
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-md);
-  background: var(--bg-elevated);
+  background: transparent;
   padding: 13px 14px;
 }
 

@@ -6,7 +6,7 @@ const TypingIndicator: React.FC = () => (
     <div className="message-container nexa-container">
       <div className="message-avatar nexa-avatar" aria-hidden="true">N</div>
       <div className="message-content">
-        <span className="message-author">Nexa AI</span>
+        <span className="message-author">Nexa is typing...</span>
         <div className="typing-indicator" aria-label="Nexa is typing">
           <span className="dot" />
           <span className="dot" />

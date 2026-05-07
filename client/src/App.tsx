@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
@@ -15,10 +15,32 @@ const App: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [chatHistory, setChatHistory] = useState<{ id: number; title: string; messages: Message[] }[]>([
+    { id: 1, title: 'React bugs', messages: [] },
+    { id: 2, title: 'Project planning', messages: [] }
+  ]);
+  const [currentChatId, setCurrentChatId] = useState<number | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    if (messages.length === 0) return;
+
+    if (currentChatId === null) {
+      // First message in a new chat! Create a history entry instantly.
+      const newId = Date.now();
+      const title = messages[0].text.substring(0, 25) + (messages[0].text.length > 25 ? '...' : '');
+      setChatHistory(prev => [{ id: newId, title, messages }, ...prev]);
+      setCurrentChatId(newId);
+    } else {
+      // Update existing chat history entry live
+      setChatHistory(prev => prev.map(chat => 
+        chat.id === currentChatId ? { ...chat, messages } : chat
+      ));
+    }
+  }, [messages, currentChatId]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -68,13 +90,35 @@ const App: React.FC = () => {
     <div className={`nexa-root ${theme}-theme`}>
       <Sidebar
         isOpen={isSidebarOpen}
+        chatHistory={chatHistory}
+        currentChatId={currentChatId}
+        onSelectChat={(id) => {
+          const selected = chatHistory.find(c => c.id === id);
+          if (selected) {
+            setMessages(selected.messages);
+            setCurrentChatId(id);
+          }
+          if (window.innerWidth <= 860) {
+            setIsSidebarOpen(false);
+          }
+        }}
+        onDeleteChat={(id) => {
+          setChatHistory(prev => prev.filter(c => c.id !== id));
+          if (currentChatId === id) {
+            setCurrentChatId(null);
+            setMessages([]);
+          }
+        }}
         onOpenProfile={() => setIsProfileOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onClose={() => setIsSidebarOpen(false)}
         onNewChat={() => {
+          setCurrentChatId(null);
           setMessages([]);
           setError(null);
-          setIsSidebarOpen(false);
+          if (window.innerWidth <= 860) {
+            setIsSidebarOpen(false);
+          }
         }}
       />
 
@@ -96,7 +140,8 @@ const App: React.FC = () => {
         <Header
           messageCount={messages.length}
           isTyping={isTyping}
-          onMenuClick={() => setIsSidebarOpen(true)}
+          isSidebarOpen={isSidebarOpen}
+          onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
         />
 
         <section className="nexa-chat-area" aria-label="Nexa AI conversation">

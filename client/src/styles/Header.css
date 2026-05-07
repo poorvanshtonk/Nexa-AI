@@ -71,6 +71,11 @@
 }
 
 .menu-button {
+  display: inline-flex;
+  transition: opacity 200ms ease;
+}
+
+.menu-button.hidden-desktop {
   display: none;
 }
 
@@ -89,6 +94,10 @@
   }
 
   .menu-button {
+    display: inline-flex;
+  }
+  
+  .menu-button.hidden-desktop {
     display: inline-flex;
   }
 
